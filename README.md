@@ -10,6 +10,12 @@ python viaualize_fd.py
 ```
 python visualize_lm.py
 ```
+## Canonical Face 3d
+- visualize Canonical Face Mdoel in World Coord.
+```
+python visualize_face_in_world.py
+```
+  - 58 pts only
 # TODO:
 - [x] dlib_frontal_face_detection(HOG) + dlib_landmark(landmark_v1)
 - [x] dlib_cnn_face_detection(CNN) + dlib_landmark(landmark_v2)
