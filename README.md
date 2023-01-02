@@ -16,6 +16,12 @@ python visualize_lm.py
 python visualize_face_in_world.py
 ```
   - 58 pts only
+## Head Pose Estimation
+- visualize headpose estimation in pixel coord.
+```
+python visualize_hp.py
+```
+- [ ] some bug should be fix
 # TODO:
 - [x] dlib_frontal_face_detection(HOG) + dlib_landmark(landmark_v1)
 - [x] dlib_cnn_face_detection(CNN) + dlib_landmark(landmark_v2)
