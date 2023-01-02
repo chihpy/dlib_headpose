@@ -19,6 +19,12 @@ python visualize_face_in_world.py
 # TODO:
 - [x] dlib_frontal_face_detection(HOG) + dlib_landmark(landmark_v1)
 - [x] dlib_cnn_face_detection(CNN) + dlib_landmark(landmark_v2)
+- [x] visualize canonical face model in world coordinate system
+- [x] head pose estimation with solvePnP
+  - [x] axis visualization
+  - [x] cube visualization
+- [ ] visualize canonical face model in camera coordinate system
+- [ ] camera intrinsic calibration
 # Models
 - Dlib mmod cnn based face detector [cnn_face_detector](https://github.com/davisking/dlib-models/raw/master/mmod_human_face_detector.dat.bz2)
   - note: This model is slow using CPU but mobile gpu like NVIDIA GeForce MX250 run smooth enough in webcam
