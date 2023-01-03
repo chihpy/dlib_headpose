@@ -5,7 +5,6 @@ note:
     - corresponding index in face3d_68 are: [33, 29, 34, 38, 13, 17, 25, 21, 55, 49, 43, 39, 45, 6]
     - corresponding index in face2d_35(vino) are: [12, 14, 15, 17, 1, 0, 2, 3, 6, 7, 8, 9, 11, 26]
     - corresponding index in face2d_68(dlib) are: [17, 21, 22, 26, 36, 39, 42, 45, 31, 35, 48, 54, 57, 8]
-- [ ] face3d_5
 """
 import numpy as np
 
@@ -22,7 +21,7 @@ def get_landmark_index(name):
 def get_cube_pts():
     """
     """
-    object_pts = get_face3d_68()
+    object_pts = get_face3d()
     xmax = object_pts[:, 0].max()
     xmin = object_pts[:, 0].min()
     ymax = object_pts[:, 1].max()
@@ -68,7 +67,7 @@ def get_face3d_14():
     return object_pts
 
 
-def get_face3d_68(index=None):
+def get_face3d(index=None):
     """
     face model from https://github.com/by-sabbir/HeadPoseEstimation/blob/master/Visualize3DModel.py
     same as general dlib used.
@@ -630,7 +629,7 @@ if __name__ == "__main__":
     landmark_idx = [33, 133, 362, 263, 61, 291, 1]  # reyer, reyel, leyer, leyel, mouthr, mouthl, nose
     object_pts = get_face3d_468(landmark_idx)
     print("selected face3d_468 has shape: {}".format(object_pts.shape))
-    object_pts = get_face3d_68()
+    object_pts = get_face3d()
     print("face3d_68 has shape: {}".format(object_pts.shape))
     object_14_pts = get_face3d_14()
     landmark_idx = []

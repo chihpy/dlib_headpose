@@ -1,5 +1,4 @@
 """
-TODO: add intrinsic calibration
 """
 import cv2
 from src.face_detector import FaceDetector
@@ -15,14 +14,16 @@ elif FD_NAME == 'dlib_frontal':
 else:
     raise("unknown FD_NAME: "+ FD_NAME)
 
-landmark_index = [17, 21, 22, 26, 36, 39, 42, 45, 31, 35, 48, 54, 57, 8]  # for visualize only: highlight selected pts
+#landmark_index = [17, 21, 22, 26, 36, 39, 42, 45, 31, 35, 48, 54, 57, 8]  # for visualize only: highlight selected pts
+landmark_index = [26, 22, 21, 17, 45, 42, 39, 36, 35, 31, 54, 48, 57, 8]
+intrinsic_path = "calibration/camera.json"
 
 if __name__ == "__main__":
     video_path = 0
     # model initial
     fd = FaceDetector(FD_NAME)
     lm = LandmarkEstimator(LM_NAME)
-    hp = PnpHeadPose()
+    hp = PnpHeadPose(intrinsic_path=intrinsic_path)
     # color map:
     color_map = {
         'bk': (0, 0, 0),
@@ -54,3 +55,4 @@ if __name__ == "__main__":
             cv2.waitKey(0)
     cap.release()
     cv2.destroyAllWindows()
+    print("\nuser exit")

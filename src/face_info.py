@@ -80,16 +80,28 @@ class ImageInfo:
                         color=color, 
                         lineType=cv2.LINE_AA,
                     )
-    def landmark_plot(self, im2show, index=None, color=(255, 255, 255)):
+    def landmark_plot(self, im2show, index=None, color=(255, 255, 255), num=False):
         if index is None:
             index = [i for i in range(self.num_landmark)]
         for face in self.faces:
             landmarks = face.landmarks
             if landmarks is None:
                 continue
-            for idx in index:
+            for cnt, idx in enumerate(index):
                 pt = landmarks[idx]
                 cv2.circle(im2show, (pt[0], pt[1]), 3, color, -1)
+                if num:
+                    txt_info = str(cnt)
+                    ((text_width, text_height), _) = cv2.getTextSize(txt_info, cv2.FONT_HERSHEY_SIMPLEX, 0.35, 1)
+                    cv2.putText(
+                    im2show,
+                    text=txt_info,
+                    org=(pt[0], pt[1] - int(0.3 * text_height)),
+                    fontFace=cv2.FONT_HERSHEY_PLAIN,
+                    fontScale=1,  
+                    color=(0, 0, 0), 
+                    lineType=cv2.LINE_AA,
+                    )
     
     def hp_axis_plot(self, im2show):
         """
@@ -108,9 +120,9 @@ class ImageInfo:
             cam_pty = np.dot(r_mat, world_pty)
             cam_ptz = np.dot(r_mat, world_ptz)
 
-            cv2.arrowedLine(im2show, (ct_x, ct_y), (ct_x + int(axisLength * cam_ptx[2][0]), ct_y + int(axisLength * cam_ptx[1][0])), (255, 0, 0), thickness=2)
-            cv2.arrowedLine(im2show, (ct_x, ct_y), (ct_x + int(axisLength * cam_pty[2][0]), ct_y + int(axisLength * cam_pty[1][0])), (0, 255, 0), thickness=2)
-            cv2.arrowedLine(im2show, (ct_x, ct_y), (ct_x + int(axisLength * cam_ptz[2][0]), ct_y + int(axisLength * cam_ptz[1][0])), (0, 0, 255), thickness=2)
+            cv2.arrowedLine(im2show, (ct_x, ct_y), (ct_x + int(axisLength * cam_ptx[0][0]), ct_y + int(axisLength * cam_ptx[1][0])), (255, 0, 0), thickness=2)
+            cv2.arrowedLine(im2show, (ct_x, ct_y), (ct_x + int(axisLength * cam_pty[0][0]), ct_y + int(axisLength * cam_pty[1][0])), (0, 255, 0), thickness=2)
+            cv2.arrowedLine(im2show, (ct_x, ct_y), (ct_x + int(axisLength * cam_ptz[0][0]), ct_y + int(axisLength * cam_ptz[1][0])), (0, 0, 255), thickness=2)
     
     def hp_cube_plot(self, im2show):
         """

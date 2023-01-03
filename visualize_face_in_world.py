@@ -1,13 +1,13 @@
 """visualize canonical_face_model in world coordinate system
 """
-import sys
-sys.path.append(r"C:\Users\poyuan.chih\Desktop\dlib_headpose")
-from src.face_3d import get_face3d_468, get_face3d_68, get_face3d_14, get_cube_pts
+from src.face_3d import get_face3d, get_face3d_14, get_cube_pts
 import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
-    object_pts = get_face3d_68()
+    object_pts = get_face3d()
     object_14 = get_face3d_14()
+
+    # figure setup
     fig = plt.figure()
     ax = fig.add_subplot(projection='3d')
     ax.set_xlim3d(-10, 10)
@@ -16,6 +16,8 @@ if __name__ == "__main__":
     ax.set_xlabel("x")
     ax.set_ylabel("y")
     ax.set_zlabel("z")
+
+    # origin
     origin = (0, 0, 0)
     xaxis = (1, 0, 0)
     yaxis = (0, 1, 0)
@@ -27,7 +29,9 @@ if __name__ == "__main__":
     ax.quiver(origin[0], origin[1], origin[2], yaxis[0], yaxis[1], yaxis[2], length=1, normalize=True, color='g')
     ## z-axis
     ax.quiver(origin[0], origin[1], origin[2], zaxis[0], zaxis[1], zaxis[2], length=1, normalize=True, color='r')
-    ## 68 pts
+    
+    # face in world
+    ## all pts(58)
     ax.scatter3D(object_pts[:, 0], object_pts[:, 1], object_pts[:, 2], c='black')
     ## selected 14 pts
     ax.scatter3D(object_14[:, 0], object_14[:, 1], object_14[:, 2], c='red', s=50)
@@ -35,7 +39,7 @@ if __name__ == "__main__":
     for idx, pt in enumerate(object_14):
         ax.text(pt[0], pt[1], pt[2], f"{idx}")
     
-    ## add 3d box here
+    # cube here
     # get (xmin, xmax), (ymin, ymax), (zmin, zmax)
     xmin, xmax, ymin, ymax, zmin, zmax = get_cube_pts()
     ax.plot3D([xmin, xmax, xmax, xmin, xmin],
@@ -63,9 +67,4 @@ if __name__ == "__main__":
               [ymax, ymax],
               [zmin, zmax],
               c='b')
-        #xmin, ymin, zmin,
-        #    xmax, ymin, zmin,
-        #    xmax, ymax, zmin,
-        #    xmax, ymax, zmax,
-        #    xmin, ymin, zmin)
     plt.show()

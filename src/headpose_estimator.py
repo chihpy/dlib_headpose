@@ -1,11 +1,9 @@
 """
 6DOF head pose estimator via cv2.solvePnP
 """
-import sys
-sys.path.append("/home/pymi/dlib_project/dlib_headpose")
 import numpy as np
 import cv2
-from src.face_3d import get_face3d_14, get_face3d_68
+from src.face_3d import get_face3d_14, get_face3d
 
 ####
 import json
@@ -63,7 +61,7 @@ class PnpHeadPose:
         self.dist_coeffs = dist_coeffs
 
         if face_3d is None:
-            self.landmark_idx = [17, 21, 22, 26, 36, 39, 42, 45, 31, 35, 48, 54, 57, 8]  # landmark 2d index
+            self.landmark_idx = [26, 22, 21, 17, 45, 42, 39, 36, 35, 31, 54, 48, 57, 8]  # landmark 2d index
             self.object_pts = get_face3d_14()
 
     def _preprocess(self, face):
@@ -84,7 +82,7 @@ class PnpHeadPose:
         return r_vec, t_vec
     
     def _get_face_in_cam(self, trans):
-        full_face = get_face3d_68()
+        full_face = get_face3d()
         temp_one = np.ones((full_face.shape[0], 1)).astype(np.float32)
         appended_object_pts = np.concatenate((full_face, temp_one), axis=1).T
         face_3d_in_cam = np.dot(trans, appended_object_pts)
@@ -96,7 +94,6 @@ class PnpHeadPose:
         1. convert r_vec to r_mat
         2. get landmarks_in_cam
         """
-        print("t_vec has shape: {}".format(t_vec.shape))
         r_mat = rodrigues(r_vec)
         # collect face info
         face.r_mat = r_mat

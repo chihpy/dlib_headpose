@@ -30,5 +30,9 @@ if __name__ == "__main__":
             break
         elif key == ord(' '):
             cv2.waitKey(0)
+        elif key == ord('s'):
+            print("write result image to figures/visualize_fd_result.jpg")
+            cv2.imwrite("figures/visualize_fd_result.jpg", im2show)
+        
     cap.release()
     cv2.destroyAllWindows()
