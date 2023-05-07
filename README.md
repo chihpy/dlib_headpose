@@ -1,4 +1,15 @@
 # Head Pose estimation via dlib models and solvepnp
+# Download models
+- download following models (cnn_face_detector, landmark_v1, landmark_v2)
+- convert to .dat format
+  - ```bzip2 -d FileName.bz2```
+# Models
+- Dlib mmod cnn based face detector [cnn_face_detector](https://github.com/davisking/dlib-models/raw/master/mmod_human_face_detector.dat.bz2)
+  - note: This model is slow using CPU but mobile gpu like NVIDIA GeForce MX250 run smooth enough in webcam
+- The well trained dlib landmark 68 model cam be downloaded from [landamrk_v1](http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2)
+  - regression tree
+- Robust landmark model use cnn based face detector for large head pose variation: [landmark_v2](https://github.com/davisking/dlib-models/raw/master/shape_predictor_68_face_landmarks_GTX.dat.bz2)
+  - regression tree
 # Demo
 ## Face Detection:
 - compare hog+svm(blue) and cnn(green)
@@ -21,7 +32,7 @@ python visualize_face_in_world.py
 ```
 python visualize_hp.py
 ```
-- [ ] some bug should be fix
+- [ ] pitch bug
 # TODO:
 - [x] dlib_frontal_face_detection(HOG) + dlib_landmark(landmark_v1)
 - [x] dlib_cnn_face_detection(CNN) + dlib_landmark(landmark_v2)
@@ -29,15 +40,8 @@ python visualize_hp.py
 - [x] head pose estimation with solvePnP
   - [x] axis visualization
   - [x] cube visualization
-- [ ] visualize canonical face model in camera coordinate system
-- [ ] camera intrinsic calibration
-# Models
-- Dlib mmod cnn based face detector [cnn_face_detector](https://github.com/davisking/dlib-models/raw/master/mmod_human_face_detector.dat.bz2)
-  - note: This model is slow using CPU but mobile gpu like NVIDIA GeForce MX250 run smooth enough in webcam
-- The well trained dlib landmark 68 model cam be downloaded from [landamrk_v1](http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2)
-  - regression tree
-- Robust landmark model use cnn based face detector for large head pose variation: [landmark_v2](https://github.com/davisking/dlib-models/raw/master/shape_predictor_68_face_landmarks_GTX.dat.bz2)
-  - regression tree
+- [x] visualize canonical face model in camera coordinate system
+- [x] camera intrinsic calibration
 
 # Reference
 - [dlib-project](https://github.com/davisking/dlib)

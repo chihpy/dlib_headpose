@@ -65,8 +65,8 @@ class dlib_frontal:
 class dlib_cnn:
     def __init__(self):
         self.name = 'dlib_cnn'
-        self.model_path = "/home/pymi/dlib_project/dlib_headpose/models/mmod_human_face_detector.dat"
-        assert os.path.exists(self.model_path), "model no found: "+ self.model_path
+        self.model_path = os.path.join(os.getcwd(), "models/mmod_human_face_detector.dat")
+        assert os.path.exists(self.model_path), f"model no found in: {self.model_path} check you already download and unbzip2"
         self.detector = dlib.cnn_face_detection_model_v1(self.model_path)
     
     def _preprocess(self, image, from_cv2=True):

@@ -1,5 +1,4 @@
 """
-TODO: model_path problem
 """
 import os
 import cv2
@@ -9,12 +8,12 @@ class LandmarkEstimator:
     def __init__(self, name):
         self.name = name
         if name == 'dlib_v1':
-            self.model_path = r"/home/pymi/dlib_project/dlib_headpose/models/shape_predictor_68_face_landmarks.dat"
-            print("using dlib_landmark68_v1 model, user should check the face detector must be dlib front model")
+            self.model_path = os.path.join(os.getcwd(), "models/shape_predictor_68_face_landmarks.dat")
+            assert os.path.exists(self.model_path), f"model no found in: {self.model_path} check you already download and unbzip2"
             self.model = dlib_landmark68(name, self.model_path)
         elif name == 'dlib_v2':
-            self.model_path = r"/home/pymi/dlib_project/dlib_headpose/models/shape_predictor_68_face_landmarks_GTX.dat"
-            print("using dlib_landmark68_v2, user should check the face bounding box must be square")
+            self.model_path = os.path.join(os.getcwd(), "models/shape_predictor_68_face_landmarks_GTX.dat")
+            assert os.path.exists(self.model_path), f"model no found in: {self.model_path} check you already download and unbzip2"
             self.model = dlib_landmark68(name, self.model_path)
     def inference(self, image, image_info, from_cv2=True):
         self.model.inference(image, image_info, from_cv2)

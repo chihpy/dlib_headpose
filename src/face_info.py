@@ -99,7 +99,7 @@ class ImageInfo:
                     org=(pt[0], pt[1] - int(0.3 * text_height)),
                     fontFace=cv2.FONT_HERSHEY_PLAIN,
                     fontScale=1,  
-                    color=(0, 0, 0), 
+                    color=(255, 255, 255), 
                     lineType=cv2.LINE_AA,
                     )
     

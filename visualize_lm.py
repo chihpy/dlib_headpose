@@ -32,6 +32,7 @@ if __name__ == "__main__":
         landmark_v1.inference(frame, front_image_info, from_cv2=True)
         front_image_info.landmark_plot(im2show, index=None, color=color_map['front'], num=False)
         front_image_info.landmark_plot(im2show, index=landmark_index, color=color_map['front'], num=True)
+# note: though landmarkv2 (GTX) can predict more wider range face, but seems unaccurate as front version
 #        cnn_image_info = cnn_face.inference(frame)
 #        cnn_image_info.box_plot(im2show, color=color_map['bk'], show_conf=True)
 #        landmark_v2.inference(frame, cnn_image_info, from_cv2=True)

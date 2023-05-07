@@ -5,8 +5,8 @@ from src.face_detector import FaceDetector
 from src.landmark_estimator import LandmarkEstimator
 from src.headpose_estimator import PnpHeadPose
 
-#FD_NAME = 'dlib_frontal'
-FD_NAME = 'dlib_cnn'
+FD_NAME = 'dlib_frontal'
+#FD_NAME = 'dlib_cnn'
 if FD_NAME == 'dlib_cnn':
     LM_NAME = 'dlib_v2'
 elif FD_NAME == 'dlib_frontal':
@@ -14,8 +14,8 @@ elif FD_NAME == 'dlib_frontal':
 else:
     raise("unknown FD_NAME: "+ FD_NAME)
 
-#landmark_index = [17, 21, 22, 26, 36, 39, 42, 45, 31, 35, 48, 54, 57, 8]  # for visualize only: highlight selected pts
-landmark_index = [26, 22, 21, 17, 45, 42, 39, 36, 35, 31, 54, 48, 57, 8]
+landmark_index = [17, 21, 22, 26, 36, 39, 42, 45, 31, 35, 48, 54, 57, 8]  # for visualize only: highlight selected pts
+#landmark_index = [26, 22, 21, 17, 45, 42, 39, 36, 35, 31, 54, 48, 57, 8]
 intrinsic_path = "calibration/camera.json"
 
 if __name__ == "__main__":

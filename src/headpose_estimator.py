@@ -61,7 +61,8 @@ class PnpHeadPose:
         self.dist_coeffs = dist_coeffs
 
         if face_3d is None:
-            self.landmark_idx = [26, 22, 21, 17, 45, 42, 39, 36, 35, 31, 54, 48, 57, 8]  # landmark 2d index
+            #self.landmark_idx = [26, 22, 21, 17, 45, 42, 39, 36, 35, 31, 54, 48, 57, 8]  # landmark 2d index
+            self.landmark_idx = [26, 22, 21, 17, 45, 42, 39, 36, 35, 31, 54, 48, 57, 8] # landmark 2d index
             self.object_pts = get_face3d_14()
 
     def _preprocess(self, face):
